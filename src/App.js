@@ -8,18 +8,22 @@ class Ticker extends Component {
       pauseTicker: false,
     }
   }
-  componentDidMount(){
+  componentDidMount(){ 
+    
     setInterval(() => {
       this.setState({
         count: this.state.count +1,
       })
     }, 1000)
+  
   }
   
   shouldComponentUpdate (nextProps, nextState){
-    if (nextState.count % 3 === 0 ) return true;
-    else return false;
-
+    if(this.state.pauseTicker===false){ 
+    return nextState.count % 3 === 0;
+    //  if (nextState.count % 3 === 0 ) return true;
+    //  else return false;
+    }
   }
 
   reset = () => { this.setState({
@@ -29,13 +33,18 @@ class Ticker extends Component {
    
   }
   pause = () => {
+    // if(this.state.pauseTicker){
+    //   return this.state.pauseTicker = false;
+    // }else{
+    //   return this.state.pauseTicker = true;
+    // }
     if(this.state.pauseTicker){
       this.setState({
-        pauseTicker: false,
+        pauseTicker: false
       })
     }else{
       this.setState({
-        pauseTicker: true,
+        pauseTicker: true
       })
     }
   }
